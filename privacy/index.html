@@ -109,7 +109,8 @@
     <div class="summary">
       Locking Bible is designed to keep your Screen Time choices and app activity private.
       We do not require an account, operate a user database, or upload your selected apps,
-      Scripture activity, streaks, or protection settings to our servers — we have no servers.
+      Scripture activity, streaks, or protection settings to a Locking Bible backend.
+      We do not operate a backend server for the Locking Bible app.
     </div>
 
     <h2>1. Overview</h2>
@@ -126,7 +127,7 @@
       <li>no access to your location, contacts, camera, microphone, photo library, or health data;</li>
       <li>no advertising and no tracking.</li>
     </ul>
-    <p>Because there is no server on our side, your in-app activity never reaches us.</p>
+    <p>Because the app has no Locking Bible backend, your in-app activity never reaches us.</p>
 
     <h2>3. Information Stored Locally on Your Device</h2>
     <p>To work, the app keeps a small amount of state on your device only, in local app storage (including a shared App Group container so the app and its Screen Time extensions can read the same state). This includes:</p>
@@ -144,9 +145,9 @@
     <p>Locking Bible uses Apple&rsquo;s Family Controls, Managed Settings, and Device Activity frameworks (Apple&rsquo;s Screen Time technology) to shield the apps you choose.</p>
     <ul>
       <li>You explicitly choose which apps to protect, using Apple&rsquo;s own app picker.</li>
-      <li>Apple represents your selection with <strong>opaque tokens</strong>: the system gives the app privacy-preserving references, designed by Apple so that apps cannot read the underlying list in a personally identifying way.</li>
+      <li>Apple represents your selections using privacy-preserving <strong>opaque tokens</strong> provided by the Family Controls framework. Locking Bible does not upload those tokens to any Locking Bible backend.</li>
       <li>Locking Bible never receives or uploads the contents or activity of the apps you protect.</li>
-      <li>Your selection and protection state are used locally on the device, and shared locally between the main app and its Screen Time extensions through the App Group container — never with a Locking Bible server, because there is none.</li>
+      <li>Your selection and protection state are used locally on the device, and shared locally between the main app and its Screen Time extensions through the App Group container. They are not transmitted to any Locking Bible backend.</li>
     </ul>
     <p>You are always in control: you can turn Protection off in the app&rsquo;s Settings, and you can revoke the app&rsquo;s Screen Time authorization at any time in iOS Settings &rarr; Screen Time.</p>
 
@@ -168,13 +169,13 @@
 
     <h2>8. Data Sharing</h2>
     <p>We do not sell personal information, and we do not share personal information with third parties for advertising.</p>
-    <p>The only third party involved in the product is <strong>Apple</strong>, whose services the app is built on: the App Store and StoreKit (purchases), Family Controls / Screen Time (app shielding), and iOS notifications. Apple processes information under its own <a href="https://www.apple.com/legal/privacy/" rel="noopener">privacy policy</a>, independently of us.</p>
+    <p>The Locking Bible iOS app does not integrate third-party analytics, advertising, attribution, or tracking SDKs. It relies on <strong>Apple</strong> system services and frameworks for purchases (App Store / StoreKit), Screen Time features (Family Controls), and local notifications. Apple processes information under its own <a href="https://www.apple.com/legal/privacy/" rel="noopener">privacy policy</a>, independently of us.</p>
     <p>The provider that hosts this website may automatically process basic technical request data (such as IP address and browser user agent) in short-lived server logs, as virtually all web hosting does, to deliver pages securely. This website itself sets no analytics or advertising cookies.</p>
 
     <h2>9. Data Retention and Deletion</h2>
     <ul>
-      <li>We do not maintain any server-side user profile and do not retain app usage data on servers — there are none.</li>
-      <li>All app state is stored locally on your device. Deleting the app removes this local data, as supported by iOS.</li>
+      <li>We do not maintain any server-side user profile and do not retain app usage data on a Locking Bible backend.</li>
+      <li>Most Locking Bible app data is stored locally and is removed when the app is deleted, subject to iOS system behavior. Screen Time permissions and system-managed settings can also be managed through iOS Settings.</li>
       <li>You can turn Protection off in the app, and revoke Screen Time authorization in iOS Settings at any time.</li>
       <li>Support emails are kept only as long as reasonably necessary to respond, maintain records, resolve disputes, or comply with legal obligations. You may email us to request deletion of your support-related personal data, where applicable.</li>
     </ul>
@@ -191,7 +192,7 @@
     <p>Locking Bible does not sell personal information and does not share personal information for cross-context behavioral advertising. There is no targeted advertising in the app.</p>
 
     <h2>12. Security</h2>
-    <p>Your app data stays on your device, protected by iOS&rsquo;s built-in security (such as device encryption and app sandboxing). Because Locking Bible transmits nothing to us, there is no Locking Bible server that could expose your app activity. Payments are secured and processed by Apple.</p>
+    <p>Your app data stays on your device, protected by iOS&rsquo;s built-in security (such as device encryption and app sandboxing). Because the app does not transmit your activity to a Locking Bible backend, there is no Locking Bible user database that could expose it. Payments are secured and processed by Apple.</p>
 
     <h2>13. International Users</h2>
     <p>The app works entirely on your device, wherever you are; we perform no cross-border transfer of your app data because we never receive it. If you email support, your message may be processed in the country where the developer is located.</p>
