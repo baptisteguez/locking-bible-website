@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — Locking Bible</title>
+<meta name="description" content="Get help with Locking Bible. Write to support@lockingbible.com — we read every message.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 88 88'%3E%3Crect x='4' y='4' width='80' height='80' rx='22' fill='%23171411'/%3E%3Crect x='14' y='14' width='60' height='60' rx='15' fill='none' stroke='%23F9E8B3' stroke-width='2.5'/%3E%3Crect x='40.5' y='26' width='7' height='34' rx='3.5' fill='%23FAF7F0'/%3E%3Crect x='31' y='35' width='26' height='7' rx='3.5' fill='%23FAF7F0'/%3E%3Cpath d='M63 46a8 8 0 0 1 16 0v5H63z' fill='none' stroke='%23F1C45A' stroke-width='5'/%3E%3Crect x='59' y='49' width='24' height='20' rx='6' fill='%23F1C45A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FAF7F0; --warm-ivory:#FFF3D8; --surface:#FFFDF9;
+    --ink:#171411; --soft-ink:#5B554E; --muted-ink:#999189;
+    --gold:#F1C45A; --deep-gold:#D6A43A; --coral:#E5685B; --hairline:#EAE3D9;
+    --serif:"Source Serif 4","New York",Georgia,"Times New Roman",serif;
+    --sans:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
+  }
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  body{
+    font-family:var(--sans); color:var(--ink);
+    background-color:var(--ivory);
+    background-image:radial-gradient(120% 60% at 16% 0%, var(--warm-ivory) 0%, rgba(255,243,216,0) 55%);
+    background-repeat:no-repeat;
+    font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:680px; margin:0 auto; padding:0 24px; }
+
+  header{ border-bottom:1px solid var(--hairline); }
+  .nav{ display:flex; align-items:center; justify-content:space-between; height:72px; }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
+  .brand svg{ width:34px; height:34px; display:block; }
+  .wordmark{ line-height:1.05; }
+  .wordmark .top{ display:block; font-size:9px; font-weight:600; letter-spacing:0.28em; color:var(--soft-ink); }
+  .wordmark .bottom{ display:block; font-family:var(--serif); font-size:18px; font-weight:500; }
+  .nav a.back{ font-size:14px; font-weight:500; color:var(--soft-ink); text-decoration:none; }
+  .nav a.back:hover{ color:var(--ink); }
+
+  main{ padding:72px 0 96px; }
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--muted-ink); margin-bottom:16px;
+  }
+  h1{
+    font-family:var(--serif); font-weight:500; font-size:clamp(36px,6vw,48px);
+    letter-spacing:-0.8px; line-height:1.1;
+  }
+  .lede{ color:var(--soft-ink); font-size:17px; margin-top:18px; max-width:48ch; }
+
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    height:54px; padding:0 28px; border-radius:16px;
+    font-size:16px; font-weight:600; text-decoration:none;
+    background:var(--gold); color:var(--ink);
+    transition:transform 150ms ease-out, background 150ms ease-out;
+    margin-top:32px;
+  }
+  .btn:hover{ background:var(--deep-gold); }
+  .btn:active{ transform:scale(0.985); }
+  .email-note{ font-size:14px; color:var(--muted-ink); margin-top:14px; }
+  .email-note a{ color:var(--ink); text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px; }
+
+  h2{
+    font-family:var(--serif); font-weight:500; font-size:24px; letter-spacing:-0.4px;
+    margin:64px 0 16px; padding-top:40px; border-top:1px solid var(--hairline);
+  }
+  p{ color:var(--soft-ink); margin:0 0 14px; }
+  strong{ color:var(--ink); font-weight:600; }
+  ul{ margin:0 0 14px; padding-left:0; list-style:none; }
+  li{ color:var(--soft-ink); padding-left:22px; position:relative; margin-bottom:8px; }
+  li::before{
+    content:""; position:absolute; left:4px; top:0.72em;
+    width:5px; height:5px; border-radius:50%; background:var(--deep-gold);
+  }
+  a{ color:var(--ink); text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px; }
+  a.btn{ text-decoration:none; }
+  a:hover{ text-decoration-color:var(--deep-gold); }
+
+  footer{ border-top:1px solid var(--hairline); padding:36px 0 48px; }
+  footer .row{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  footer p, footer a{ font-size:13px; color:var(--muted-ink); }
+  footer a{ text-decoration:none; }
+  footer a:hover{ color:var(--ink); }
+  footer nav{ display:flex; gap:24px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="../" aria-label="Locking Bible — home">
+      <svg viewBox="0 0 88 88" aria-hidden="true">
+        <rect x="4" y="4" width="80" height="80" rx="22" fill="#171411"/>
+        <rect x="14" y="14" width="60" height="60" rx="15" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
+        <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+        <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+        <path d="M63 46a8 8 0 0 1 16 0v5H63z" fill="none" stroke="#F1C45A" stroke-width="5"/>
+        <rect x="59" y="49" width="24" height="20" rx="6" fill="#F1C45A"/>
+      </svg>
+      <span class="wordmark"><span class="top">LOCKING</span><span class="bottom">Bible</span></span>
+    </a>
+    <a class="back" href="../">Back to home</a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <p class="eyebrow">Support</p>
+    <h1>How can we help?</h1>
+    <p class="lede">Write to us about anything — a question, a problem, or an idea. We read every message.</p>
+
+    <a class="btn" href="mailto:support@lockingbible.com">Email support</a>
+    <p class="email-note">or write directly to <a href="mailto:support@lockingbible.com">support@lockingbible.com</a></p>
+
+    <h2>To help us help you faster</h2>
+    <p>If you&rsquo;re reporting a problem, it helps to include:</p>
+    <ul>
+      <li>your iPhone model and iOS version;</li>
+      <li>what you were doing when the problem happened;</li>
+      <li>a screenshot, if you can.</li>
+    </ul>
+
+    <h2>Subscriptions</h2>
+    <p>Subscriptions are handled by Apple through your App&nbsp;Store account.</p>
+    <ul>
+      <li><strong>Manage or cancel:</strong> iOS Settings &rarr; your name &rarr; Subscriptions, or Manage Subscription inside the app&rsquo;s Settings.</li>
+      <li><strong>Restore a purchase:</strong> open Locking Bible &rarr; Settings &rarr; Restore Purchases.</li>
+      <li><strong>Refunds:</strong> refunds are issued by Apple — request one at <a href="https://reportaproblem.apple.com" rel="noopener">reportaproblem.apple.com</a>.</li>
+    </ul>
+
+    <h2>Protection &amp; Screen Time</h2>
+    <ul>
+      <li><strong>Turn Protection on or off:</strong> in the app&rsquo;s Settings.</li>
+      <li><strong>Change protected apps:</strong> Settings &rarr; Protected Apps.</li>
+      <li><strong>Revoke Screen Time access:</strong> iOS Settings &rarr; Screen&nbsp;Time.</li>
+    </ul>
+
+    <h2>Privacy</h2>
+    <p>Locking Bible has no account, no backend, and no analytics — your data stays on your device. Read the full <a href="../privacy/">Privacy Policy</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <p>© 2026 Locking Bible · Less scrolling. More Scripture.</p>
+    <nav>
+      <a href="../">Home</a>
+      <a href="../privacy/">Privacy Policy</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>

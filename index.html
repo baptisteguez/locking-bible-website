@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locking Bible — Less scrolling. More Scripture.</title>
+<meta name="description" content="Locking Bible pauses the distracting apps you choose and gives you a short moment with God's Word before you can scroll. Scripture before scrolling.">
+<meta property="og:title" content="Locking Bible — Less scrolling. More Scripture.">
+<meta property="og:description" content="A quiet pause before the scroll begins. Scripture → Reflection → Prayer, then you choose when to return.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 88 88'%3E%3Crect x='4' y='4' width='80' height='80' rx='22' fill='%23171411'/%3E%3Crect x='14' y='14' width='60' height='60' rx='15' fill='none' stroke='%23F9E8B3' stroke-width='2.5'/%3E%3Crect x='40.5' y='26' width='7' height='34' rx='3.5' fill='%23FAF7F0'/%3E%3Crect x='31' y='35' width='26' height='7' rx='3.5' fill='%23FAF7F0'/%3E%3Cpath d='M63 46a8 8 0 0 1 16 0v5H63z' fill='none' stroke='%23F1C45A' stroke-width='5'/%3E%3Crect x='59' y='49' width='24' height='20' rx='6' fill='%23F1C45A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ivory:#FAF7F0;
+    --warm-ivory:#FFF3D8;
+    --surface:#FFFDF9;
+    --ink:#171411;
+    --soft-ink:#5B554E;
+    --muted-ink:#999189;
+    --gold:#F1C45A;
+    --deep-gold:#D6A43A;
+    --soft-gold:#F9E8B3;
+    --coral:#E5685B;
+    --soft-coral:#F7D9D4;
+    --moss:#6F8A72;
+    --soft-moss:#DEE7DE;
+    --hairline:#EAE3D9;
+    --serif:"Source Serif 4", "New York", Georgia, "Times New Roman", serif;
+    --sans:"Inter", -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *, *::before, *::after{ animation:none !important; transition:none !important; }
+  }
+
+  body{
+    font-family:var(--sans);
+    color:var(--ink);
+    background-color:var(--ivory);
+    background-image:
+      radial-gradient(120% 90% at 16% 4%, var(--warm-ivory) 0%, rgba(255,243,216,0) 55%),
+      radial-gradient(70% 60% at 92% 96%, rgba(247,217,212,0.10) 0%, rgba(247,217,212,0) 60%),
+      linear-gradient(to bottom, rgba(249,232,179,0.03), rgba(249,232,179,0));
+    background-attachment:fixed;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 24px; }
+
+  /* ---------- shared type ---------- */
+  .eyebrow{
+    font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
+    color:var(--muted-ink); margin-bottom:18px;
+  }
+  h1,h2,.serif{ font-family:var(--serif); font-weight:500; letter-spacing:-0.5px; }
+  h1{ font-size:clamp(42px, 6vw, 68px); line-height:1.08; letter-spacing:-1px; }
+  h2{ font-size:clamp(32px, 4.2vw, 46px); line-height:1.15; }
+  .accent{ color:var(--coral); }
+  .lede{ font-size:17px; color:var(--soft-ink); max-width:46ch; }
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    height:54px; padding:0 28px; border-radius:16px;
+    font-family:var(--sans); font-size:16px; font-weight:600; text-decoration:none;
+    transition:transform 150ms ease-out, opacity 150ms ease-out, background 150ms ease-out;
+    cursor:pointer; border:none;
+  }
+  .btn:active{ transform:scale(0.985); opacity:0.92; }
+  .btn-gold{ background:var(--gold); color:var(--ink); }
+  .btn-gold:hover{ background:var(--deep-gold); }
+  .btn-ink{ background:var(--ink); color:var(--ivory); }
+  .btn-ink:hover{ opacity:0.9; }
+  .btn-quiet{
+    background:transparent; color:var(--ink); border:1px solid var(--hairline);
+  }
+  .btn-quiet:hover{ border-color:var(--muted-ink); }
+  .btn .arrow{ transition:transform 150ms ease-out; }
+  .btn:hover .arrow{ transform:translateX(3px); }
+  .btn-note{ font-size:13px; color:var(--muted-ink); margin-top:14px; }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,240,0.82);
+    backdrop-filter:blur(14px); -webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid rgba(234,227,217,0.85);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    height:72px;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
+  .brand svg{ width:38px; height:38px; display:block; }
+  .wordmark{ line-height:1.05; }
+  .wordmark .top{
+    display:block; font-size:9px; font-weight:600; letter-spacing:0.28em; color:var(--soft-ink);
+  }
+  .wordmark .bottom{ display:block; font-family:var(--serif); font-size:19px; font-weight:500; }
+  .nav-links{ display:flex; align-items:center; gap:32px; }
+  .nav-links a.link{
+    font-size:14px; font-weight:500; color:var(--soft-ink); text-decoration:none;
+    transition:color 150ms ease-out;
+  }
+  .nav-links a.link:hover{ color:var(--ink); }
+  .nav .btn{ height:42px; padding:0 20px; border-radius:13px; font-size:14px; }
+  @media (max-width:640px){ .nav-links a.link{ display:none; } }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:96px 0 60px; }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:64px; align-items:center;
+  }
+  @media (max-width:900px){
+    .hero-grid{ grid-template-columns:1fr; gap:72px; }
+    .hero{ padding-top:64px; }
+  }
+  .hero .lede{ margin:26px 0 38px; }
+
+  /* ---------- phone mockup ---------- */
+  .phone{
+    width:min(320px, 82vw);
+    aspect-ratio: 320 / 660;
+    border-radius:48px;
+    background:var(--ink);
+    padding:12px;
+    box-shadow:
+      0 1px 0 rgba(23,20,17,0.04),
+      0 24px 60px -24px rgba(23,20,17,0.28);
+    margin:0 auto;
+  }
+  .screen{
+    width:100%; height:100%; border-radius:38px; overflow:hidden;
+    display:flex; flex-direction:column; position:relative;
+  }
+  /* dark shield screen */
+  .screen-shield{
+    background:#1D1915;
+    align-items:center; justify-content:center; text-align:center;
+    padding:32px 26px;
+  }
+  .screen-shield .mark{ width:76px; height:76px; margin-bottom:22px; }
+  .screen-shield h3{
+    font-family:var(--serif); font-weight:600; font-size:22px; color:var(--ivory);
+    letter-spacing:-0.3px; margin-bottom:10px;
+  }
+  .screen-shield p{
+    font-size:14px; line-height:1.55; color:#EFDDB9; opacity:0.85; max-width:24ch; margin:0 auto;
+  }
+  .screen-shield .capsule{
+    position:absolute; left:22px; right:22px; bottom:26px;
+    height:52px; border-radius:26px; background:var(--gold);
+    display:flex; align-items:center; justify-content:center;
+    font-size:15px; font-weight:600; color:#6B5215;
+  }
+  .float-verse{
+    position:absolute; z-index:2;
+    background:rgba(255,253,249,0.94);
+    border:1px solid rgba(234,227,217,0.9);
+    border-radius:20px; padding:16px 18px;
+    box-shadow:0 18px 40px -20px rgba(23,20,17,0.25);
+    width:220px;
+  }
+  .float-verse .v{
+    font-family:var(--serif); font-size:15px; line-height:1.5; letter-spacing:-0.2px;
+  }
+  .float-verse .r{
+    font-size:11px; font-weight:600; color:var(--coral); margin-top:8px;
+  }
+  .hero-phone{ position:relative; }
+  .hero-phone .float-verse{ right:-8px; top:56px; }
+  .hero-phone .float-pill{
+    position:absolute; z-index:2; left:-10px; bottom:96px;
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--soft-moss); border-radius:999px; padding:9px 16px;
+    font-size:13px; font-weight:600; color:var(--ink);
+    box-shadow:0 14px 32px -18px rgba(23,20,17,0.25);
+  }
+  @media (max-width:640px){
+    .hero-phone .float-verse{ right:0; }
+    .hero-phone .float-pill{ left:0; }
+  }
+  .dot{ width:7px; height:7px; border-radius:50%; background:var(--moss); flex:none; }
+
+  /* light screens (steps) */
+  .screen-light{
+    background:
+      radial-gradient(120% 70% at 18% 0%, var(--warm-ivory) 0%, rgba(255,243,216,0) 60%),
+      var(--ivory);
+    padding:30px 22px;
+  }
+
+  /* ---------- stats strip ---------- */
+  .stats-strip{
+    margin-top:64px;
+    display:flex; justify-content:center;
+  }
+  .stats{
+    display:flex; align-items:stretch;
+    background:rgba(255,253,249,0.92);
+    border:1px solid rgba(234,227,217,0.85);
+    border-radius:24px; padding:22px 8px;
+  }
+  .stat{ padding:0 34px; text-align:center; }
+  .stat + .stat{ border-left:1px solid var(--hairline); }
+  .stat .num{ font-family:var(--serif); font-size:24px; font-weight:500; letter-spacing:-0.3px; }
+  .stat .lbl{ font-size:11px; color:var(--muted-ink); margin-top:4px; letter-spacing:0.04em; }
+  @media (max-width:640px){
+    .stats{ flex-direction:column; padding:10px 26px; }
+    .stat{ padding:16px 4px; }
+    .stat + .stat{ border-left:none; border-top:1px solid var(--hairline); }
+  }
+
+  /* ---------- sections ---------- */
+  section{ padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:64px; }
+  .section-head.center{ margin-left:auto; margin-right:auto; text-align:center; }
+  .section-head p{ margin-top:18px; color:var(--soft-ink); font-size:17px; }
+
+  /* ---------- how it works ---------- */
+  .steps{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:24px;
+  }
+  @media (max-width:820px){ .steps{ grid-template-columns:1fr; } }
+  .step-card{
+    background:rgba(255,253,249,0.92);
+    border:1px solid rgba(234,227,217,0.85);
+    border-radius:28px; padding:32px 32px 36px;
+    display:flex; flex-direction:column; gap:24px;
+  }
+  .step-num{
+    font-family:var(--serif); font-size:15px; color:var(--muted-ink);
+  }
+  .step-card h3{
+    font-family:var(--serif); font-weight:500; font-size:24px; letter-spacing:-0.4px;
+    margin-top:6px;
+  }
+  .step-card p.desc{ color:var(--soft-ink); font-size:15px; margin-top:10px; }
+  .step-visual{
+    margin-top:auto;
+    border-radius:20px; border:1px solid var(--hairline);
+    background:var(--ivory); padding:22px; min-height:150px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:16px;
+  }
+
+  /* step 1 : app tiles */
+  .tiles{ display:grid; grid-template-columns:repeat(4, 40px); gap:14px; }
+  .tile{ width:40px; height:40px; border-radius:11px; opacity:0.9; }
+  .pill-moss{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--soft-moss); border-radius:999px; padding:8px 15px;
+    font-size:13px; font-weight:600;
+  }
+
+  /* step 2 : mini shield */
+  .mini-shield{
+    background:#1D1915; border-radius:16px; padding:20px 22px;
+    display:flex; align-items:center; gap:14px; width:100%;
+  }
+  .mini-shield svg{ width:40px; height:40px; flex:none; }
+  .mini-shield .t{ font-family:var(--serif); font-size:16px; color:var(--ivory); line-height:1.3; }
+  .mini-shield .s{ font-size:12px; color:#EFDDB9; opacity:0.8; margin-top:3px; }
+
+  /* step 3 : verse */
+  .mini-verse{ text-align:center; padding:4px 8px; }
+  .mini-verse .quote{
+    font-family:var(--serif); font-size:19px; line-height:1.45; letter-spacing:-0.3px;
+  }
+  .mini-verse .ref{ font-size:12px; font-weight:600; color:var(--coral); margin-top:10px; }
+  .mini-verse .flow{
+    font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--muted-ink); margin-top:16px;
+  }
+
+  /* step 4 : duration pills */
+  .durations{ display:flex; gap:10px; }
+  .dur{
+    padding:11px 18px; border-radius:999px; font-size:13px; font-weight:600;
+    background:var(--surface); border:1px solid var(--hairline); color:var(--soft-ink);
+    letter-spacing:0.04em;
+  }
+  .dur.sel{ background:var(--soft-gold); border-color:var(--gold); color:var(--ink); }
+  .auto-note{ font-size:12px; color:var(--muted-ink); }
+
+  /* ---------- verse interlude ---------- */
+  .interlude{ text-align:center; padding:130px 0; }
+  .interlude .ref{
+    font-size:14px; font-weight:600; color:var(--coral); margin-bottom:26px;
+  }
+  .interlude blockquote{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(30px, 4.6vw, 50px); line-height:1.3; letter-spacing:-0.5px;
+    max-width:20ch; margin:0 auto;
+  }
+  .spark{ color:var(--deep-gold); font-size:20px; margin-top:34px; }
+
+  /* ---------- time / honest numbers ---------- */
+  .time-grid{ display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+  @media (max-width:820px){ .time-grid{ grid-template-columns:1fr; } }
+  .time-card{
+    background:rgba(255,253,249,0.92);
+    border:1px solid rgba(234,227,217,0.85);
+    border-radius:28px; padding:40px;
+  }
+  .time-card .big{
+    font-family:var(--serif); font-size:clamp(34px, 4vw, 44px); letter-spacing:-0.6px; line-height:1.1;
+  }
+  .time-card .big em{ font-style:normal; color:var(--coral); }
+  .time-card .big em.gold{ color:var(--deep-gold); }
+  .time-card p{ color:var(--soft-ink); font-size:15px; margin-top:16px; max-width:40ch; }
+  .time-note{ font-size:13px; color:var(--muted-ink); margin-top:22px; text-align:center; }
+
+  /* ---------- features ---------- */
+  .features{ display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; }
+  @media (max-width:900px){ .features{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:600px){ .features{ grid-template-columns:1fr; } }
+  .feature{
+    background:rgba(255,253,249,0.92);
+    border:1px solid rgba(234,227,217,0.85);
+    border-radius:24px; padding:28px;
+  }
+  .feature .ic{
+    width:40px; height:40px; border-radius:12px; background:var(--soft-gold);
+    display:flex; align-items:center; justify-content:center; margin-bottom:18px;
+    color:#8A6A1C;
+  }
+  .feature .ic.moss{ background:var(--soft-moss); color:var(--moss); }
+  .feature .ic.coral{ background:var(--soft-coral); color:var(--coral); }
+  .feature h3{ font-family:var(--serif); font-weight:500; font-size:19px; letter-spacing:-0.3px; }
+  .feature p{ font-size:14px; color:var(--soft-ink); margin-top:8px; }
+
+  /* ---------- pricing ---------- */
+  .plans{ display:grid; grid-template-columns:repeat(2, minmax(0,440px)); gap:24px; justify-content:center; }
+  @media (max-width:820px){ .plans{ grid-template-columns:minmax(0,440px); } }
+  .plan{
+    background:rgba(255,253,249,0.92);
+    border:1px solid rgba(234,227,217,0.85);
+    border-radius:28px; padding:40px;
+    display:flex; flex-direction:column;
+  }
+  .plan.featured{ border-color:var(--gold); border-width:1.5px; position:relative; }
+  .badge{
+    position:absolute; top:-14px; left:40px;
+    background:var(--soft-gold); border:1px solid var(--gold);
+    color:var(--ink); border-radius:999px; padding:5px 14px;
+    font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
+  }
+  .plan .name{ font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-ink); }
+  .plan .price{ font-family:var(--serif); font-size:44px; letter-spacing:-0.6px; margin-top:16px; }
+  .plan .per{ font-family:var(--sans); font-size:15px; color:var(--soft-ink); letter-spacing:0; }
+  .plan ul{ list-style:none; margin:26px 0 34px; display:grid; gap:12px; }
+  .plan li{ font-size:14px; color:var(--soft-ink); display:flex; gap:10px; align-items:flex-start; }
+  .plan li::before{
+    content:""; width:16px; height:16px; flex:none; margin-top:2px;
+    border-radius:50%; background:var(--soft-gold);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.5l2.5 2.5 4.5-5' fill='none' stroke='%23D6A43A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  }
+  .plan .btn{ margin-top:auto; width:100%; }
+
+  /* ---------- final CTA (shield card) ---------- */
+  .final{
+    background:#1D1915;
+    border-radius:32px;
+    padding:clamp(56px, 8vw, 96px) 32px;
+    text-align:center; position:relative; overflow:hidden;
+  }
+  .final::before{
+    content:""; position:absolute; inset:0;
+    background:radial-gradient(80% 60% at 50% 0%, rgba(249,232,179,0.07), rgba(249,232,179,0));
+    pointer-events:none;
+  }
+  .final .mark{ width:72px; height:72px; margin:0 auto 26px; display:block; }
+  .final h2{ color:var(--ivory); max-width:18ch; margin:0 auto; }
+  .final p{ color:#EFDDB9; opacity:0.85; margin:20px auto 36px; max-width:44ch; font-size:16px; }
+  .final .btn-note{ color:rgba(239,221,185,0.6); }
+
+  /* ---------- footer ---------- */
+  footer{ padding:64px 0 48px; }
+  .foot{
+    border-top:1px solid var(--hairline); padding-top:40px;
+    display:flex; align-items:flex-start; justify-content:space-between; gap:32px; flex-wrap:wrap;
+  }
+  .foot .tag{ font-family:var(--serif); font-size:15px; color:var(--soft-ink); margin-top:12px; }
+  .foot-links{ display:flex; gap:28px; }
+  .foot-links a{ font-size:13px; color:var(--muted-ink); text-decoration:none; }
+  .foot-links a:hover{ color:var(--ink); }
+  .copyright{ font-size:12px; color:var(--muted-ink); margin-top:32px; }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(14px); transition:opacity 240ms ease-in-out, transform 420ms ease-out; }
+  .reveal.in{ opacity:1; transform:none; }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ======================= NAV ======================= -->
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Locking Bible — home">
+      <svg viewBox="0 0 88 88" aria-hidden="true">
+        <rect x="4" y="4" width="80" height="80" rx="22" fill="#171411"/>
+        <rect x="14" y="14" width="60" height="60" rx="15" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
+        <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+        <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+        <path d="M63 46a8 8 0 0 1 16 0v5H63z" fill="none" stroke="#F1C45A" stroke-width="5"/>
+        <rect x="59" y="49" width="24" height="20" rx="6" fill="#F1C45A"/>
+      </svg>
+      <span class="wordmark">
+        <span class="top">LOCKING</span>
+        <span class="bottom">Bible</span>
+      </span>
+    </a>
+    <nav class="nav-links" aria-label="Main">
+      <a class="link" href="#how">How it works</a>
+      <a class="link" href="#time">Your time</a>
+      <a class="link" href="#pricing">Pricing</a>
+      <a class="btn btn-ink" href="#" data-appstore>Download</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ======================= HERO ======================= -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Scripture before scrolling</p>
+          <h1>Less scrolling.<br><span class="accent">More Scripture.</span></h1>
+          <p class="lede">Locking Bible pauses the distracting apps you choose and gives you a short moment with God&rsquo;s Word before you can scroll.</p>
+          <a class="btn btn-gold" href="#" data-appstore>
+            Download on the App&nbsp;Store
+            <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <p class="btn-note">For iPhone · 3-day free trial</p>
+        </div>
+
+        <div class="hero-phone reveal">
+          <!-- The real in-product shield, reproduced faithfully -->
+          <div class="phone" role="img" aria-label="The Locking Bible shield: Scripture before scrolling. Take a short moment with God's Word before opening this app.">
+            <div class="screen screen-shield">
+              <svg class="mark" viewBox="0 0 88 88" aria-hidden="true">
+                <rect x="4" y="4" width="80" height="80" rx="22" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
+                <rect x="14" y="14" width="60" height="60" rx="15" fill="none" stroke="#8A7B55" stroke-width="2"/>
+                <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+                <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+                <rect x="76" y="38" width="10" height="16" rx="4" fill="#F1C45A"/>
+              </svg>
+              <h3>Scripture before scrolling.</h3>
+              <p>Take a short moment with God&rsquo;s Word before opening this app.</p>
+              <div class="capsule">Open Locking Bible</div>
+            </div>
+          </div>
+          <div class="float-verse" aria-hidden="true">
+            <p class="v">&ldquo;Be still, and know that I&nbsp;am&nbsp;God.&rdquo;</p>
+            <p class="r">Psalm 46:10</p>
+          </div>
+          <div class="float-pill" aria-hidden="true"><span class="dot"></span>Paused until Scripture</div>
+        </div>
+      </div>
+
+      <div class="stats-strip reveal">
+        <div class="stats" role="list">
+          <div class="stat" role="listitem"><div class="num">1 / 15 / 30</div><div class="lbl">minutes — you choose when to return</div></div>
+          <div class="stat" role="listitem"><div class="num serif">Automatic</div><div class="lbl">re-protection when time is up</div></div>
+          <div class="stat" role="listitem"><div class="num serif">One verse</div><div class="lbl">reflection &amp; prayer, before the scroll</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= HOW IT WORKS ======================= -->
+  <section id="how">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">How it works</p>
+        <h2>Create a quiet pause <span class="accent">before the scroll begins.</span></h2>
+        <p>Four small steps, powered by Apple Screen Time. You stay in control of your attention.</p>
+      </div>
+
+      <div class="steps">
+        <article class="step-card reveal">
+          <div>
+            <p class="step-num">Step 1</p>
+            <h3>Choose the apps you want to protect.</h3>
+            <p class="desc">You decide which apps should pause before you scroll.</p>
+          </div>
+          <div class="step-visual" aria-hidden="true">
+            <div class="tiles">
+              <span class="tile" style="background:#171411"></span>
+              <span class="tile" style="background:#C9534B"></span>
+              <span class="tile" style="background:#D98B3A"></span>
+              <span class="tile" style="background:#6F8A72"></span>
+              <span class="tile" style="background:#B0685E"></span>
+              <span class="tile" style="background:#5B554E"></span>
+              <span class="tile" style="background:#D6A43A"></span>
+              <span class="tile" style="background:#999189"></span>
+            </div>
+            <span class="pill-moss"><span class="dot"></span>Paused until Scripture</span>
+          </div>
+        </article>
+
+        <article class="step-card reveal">
+          <div>
+            <p class="step-num">Step 2</p>
+            <h3>When you open one, the scroll waits.</h3>
+            <p class="desc">A calm shield appears instead of the feed.</p>
+          </div>
+          <div class="step-visual" aria-hidden="true">
+            <div class="mini-shield">
+              <svg viewBox="0 0 88 88" aria-hidden="true">
+                <rect x="4" y="4" width="80" height="80" rx="22" fill="none" stroke="#F9E8B3" stroke-width="3"/>
+                <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+                <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+                <rect x="76" y="38" width="10" height="16" rx="4" fill="#F1C45A"/>
+              </svg>
+              <div>
+                <div class="t">Scripture before scrolling.</div>
+                <div class="s">Take a short moment with God&rsquo;s Word.</div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="step-card reveal">
+          <div>
+            <p class="step-num">Step 3</p>
+            <h3>A short moment with God&rsquo;s Word.</h3>
+            <p class="desc">One verse, a brief reflection, and a prayer — about a minute.</p>
+          </div>
+          <div class="step-visual" aria-hidden="true">
+            <div class="mini-verse">
+              <p class="quote">&ldquo;Let every person be quick to hear, slow to speak.&rdquo;</p>
+              <p class="ref">James 1:19</p>
+              <p class="flow">Scripture · Reflection · Prayer</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="step-card reveal">
+          <div>
+            <p class="step-num">Step 4</p>
+            <h3>Then choose when to return.</h3>
+            <p class="desc">Unlock for 1, 15 or 30 minutes. Protection returns automatically when time is up.</p>
+          </div>
+          <div class="step-visual" aria-hidden="true">
+            <div class="durations">
+              <span class="dur">1 MIN</span>
+              <span class="dur sel">15 MIN</span>
+              <span class="dur">30 MIN</span>
+            </div>
+            <p class="auto-note">Protection returns automatically.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= VERSE INTERLUDE ======================= -->
+  <section class="interlude">
+    <div class="wrap reveal">
+      <p class="eyebrow">Before you scroll</p>
+      <p class="ref">Psalm 46:10</p>
+      <blockquote>&ldquo;Be still, and know that I&nbsp;am&nbsp;God.&rdquo;</blockquote>
+      <div class="spark" aria-hidden="true">✦</div>
+    </div>
+  </section>
+
+  <!-- ======================= YOUR TIME ======================= -->
+  <section id="time">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Your time</p>
+        <h2>The scroll adds up. <span class="accent">So does Scripture.</span></h2>
+      </div>
+      <div class="time-grid">
+        <div class="time-card reveal">
+          <p class="big">3–4 hours a day is about <em>53 days</em> a year.</p>
+          <p>At 3–4 hours of scrolling a day, a year holds roughly 1,278 hours of screen time — about 53 full days.</p>
+        </div>
+        <div class="time-card reveal">
+          <p class="big">10 minutes a day is about <em class="gold">61 hours</em> of Scripture a year.</p>
+          <p>A short pause before each scroll quietly becomes a lasting rhythm with God&rsquo;s Word.</p>
+        </div>
+      </div>
+      <p class="time-note reveal">Simple arithmetic — no made-up statistics, ever.</p>
+    </div>
+  </section>
+
+  <!-- ======================= FEATURES ======================= -->
+  <section id="features">
+    <div class="wrap">
+      <div class="section-head reveal">
+        <p class="eyebrow">What&rsquo;s inside</p>
+        <h2>Less noise. <span class="accent">More Scripture.</span></h2>
+        <p>Only what the pause needs — nothing more.</p>
+      </div>
+      <div class="features">
+        <article class="feature reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2.5" y="2.5" width="13" height="13" rx="4" stroke="currentColor" stroke-width="1.6"/><rect x="11" y="7" width="4.5" height="6.5" rx="2" fill="currentColor"/></svg>
+          </div>
+          <h3>Protect the apps you choose</h3>
+          <p>Pick your distracting apps. Locking Bible shields them via Apple Screen Time.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ic coral" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 3v12M4.5 7.5h9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+          </div>
+          <h3>Scripture → Reflection → Prayer</h3>
+          <p>A short, guided moment with God&rsquo;s Word before the feed opens.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 5.5V9l2.5 1.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          </div>
+          <h3>1 / 15 / 30 minute unlocks</h3>
+          <p>You decide how long the apps stay open. You stay in control of your attention.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ic moss" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2.5l5.5 2v4c0 3.4-2.3 5.9-5.5 7-3.2-1.1-5.5-3.6-5.5-7v-4l5.5-2z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Automatic re-protection</h3>
+          <p>When time is up, the shield quietly returns on its own. Nothing to remember.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ic" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 2.5l1.8 3.9 4.2.5-3.1 2.9.8 4.2L9 12l-3.7 2 .8-4.2L3 6.9l4.2-.5L9 2.5z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>A simple streak</h3>
+          <p>See the days you put Scripture first. No guilt, no shaming — just a gentle rhythm.</p>
+        </article>
+        <article class="feature reveal">
+          <div class="ic moss" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 13.5l4-4 3 3 5-5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <h3>Time reclaimed</h3>
+          <p>Watch the minutes you didn&rsquo;t scroll add up, day after day.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= PRICING ======================= -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="section-head center reveal">
+        <p class="eyebrow">Pricing</p>
+        <h2>Build a rhythm <span class="accent">that lasts.</span></h2>
+        <p>Start with a 3-day free trial. Cancel anytime in your App&nbsp;Store settings.</p>
+      </div>
+      <div class="plans">
+        <article class="plan reveal">
+          <p class="name">Weekly</p>
+          <p class="price">$4.99 <span class="per">/ week</span></p>
+          <ul>
+            <li>Every feature included</li>
+            <li>Protect the apps you choose</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a class="btn btn-quiet" href="#" data-appstore>Start weekly</a>
+        </article>
+        <article class="plan featured reveal">
+          <span class="badge">3-day free trial</span>
+          <p class="name">Yearly</p>
+          <p class="price">$39.99 <span class="per">/ year</span></p>
+          <ul>
+            <li>Every feature included</li>
+            <li>3-day free trial, then $39.99/year</li>
+            <li>Cancel anytime</li>
+          </ul>
+          <a class="btn btn-gold" href="#" data-appstore>
+            Start free trial
+            <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================= FINAL CTA ======================= -->
+  <section id="download" style="padding-top:0;">
+    <div class="wrap">
+      <div class="final reveal">
+        <svg class="mark" viewBox="0 0 88 88" aria-hidden="true">
+          <rect x="4" y="4" width="80" height="80" rx="22" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
+          <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+          <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+          <rect x="76" y="38" width="10" height="16" rx="4" fill="#F1C45A"/>
+        </svg>
+        <h2>When the scroll can wait, Scripture comes first.</h2>
+        <p>Create a quiet pause before the scroll begins — on the apps you choose, starting today.</p>
+        <a class="btn btn-gold" href="#" data-appstore>
+          Download on the App&nbsp;Store
+          <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <p class="btn-note">For iPhone · 3-day free trial · Cancel anytime</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ======================= FOOTER ======================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top" aria-label="Locking Bible — home">
+          <svg viewBox="0 0 88 88" style="width:34px;height:34px" aria-hidden="true">
+            <rect x="4" y="4" width="80" height="80" rx="22" fill="#171411"/>
+            <rect x="14" y="14" width="60" height="60" rx="15" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
+            <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
+            <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
+            <path d="M63 46a8 8 0 0 1 16 0v5H63z" fill="none" stroke="#F1C45A" stroke-width="5"/>
+            <rect x="59" y="49" width="24" height="20" rx="6" fill="#F1C45A"/>
+          </svg>
+          <span class="wordmark">
+            <span class="top">LOCKING</span>
+            <span class="bottom">Bible</span>
+          </span>
+        </a>
+        <p class="tag">Less scrolling. More Scripture.</p>
+      </div>
+      <nav class="foot-links" aria-label="Footer">
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="support/">Support</a>
+        <a href="privacy/">Privacy Policy</a>
+        <a href="#" data-appstore>Download</a>
+      </nav>
+    </div>
+    <p class="copyright">© 2026 Locking Bible. Apple, the App&nbsp;Store and Screen&nbsp;Time are trademarks of Apple&nbsp;Inc.</p>
+  </div>
+</footer>
+
+<script>
+  /* ============================================================
+     APP STORE LINK — replace this one URL when you have it.
+     Every "Download" button on the page uses it automatically.
+     ============================================================ */
+  const APP_STORE_URL = "#"; // e.g. "https://apps.apple.com/app/id0000000000"
+
+  document.querySelectorAll("[data-appstore]").forEach(a => {
+    a.href = APP_STORE_URL;
+    if (APP_STORE_URL !== "#") { a.target = "_blank"; a.rel = "noopener"; }
+  });
+
+  /* Calm reveal-on-scroll (respects prefers-reduced-motion via CSS) */
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
