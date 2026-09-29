@@ -6,6 +6,7 @@
 <title>Locking Bible — Less scrolling. More Scripture.</title>
 <meta name="description" content="Locking Bible is an iOS app that pauses the distracting apps you choose and gives you a short moment with God's Word before you can scroll. Scripture before scrolling.">
 <link rel="canonical" href="https://lockingbible.com/">
+<meta name="apple-itunes-app" content="app-id=6809897876">
 <meta property="og:title" content="Locking Bible — Less scrolling. More Scripture.">
 <meta property="og:description" content="A quiet pause before the scroll begins. Scripture → Reflection → Prayer, then you choose when to return.">
 <meta property="og:type" content="website">
@@ -29,10 +30,7 @@
       "description": "Locking Bible pauses the distracting apps you choose, using Apple Screen Time, and gives you a short moment with Scripture — a verse, a reflection, and a prayer — before you can scroll.",
       "url": "https://lockingbible.com/",
       "image": "https://lockingbible.com/icon.png",
-      "offers": [
-        { "@type": "Offer", "price": "4.99", "priceCurrency": "USD", "description": "Weekly subscription" },
-        { "@type": "Offer", "price": "39.99", "priceCurrency": "USD", "description": "Annual subscription with 3-day free trial" }
-      ],
+      "downloadUrl": "https://apps.apple.com/us/app/locking-bible-stop-scrolling/id6809897876",
       "author": { "@type": "Person", "name": "Baptiste Guez" }
     },
     {
@@ -287,8 +285,12 @@
   }
 
   /* step 1 : app tiles */
-  .tiles{ display:grid; grid-template-columns:repeat(4, 40px); gap:14px; }
-  .tile{ width:40px; height:40px; border-radius:11px; opacity:0.9; }
+  .tiles{ display:grid; grid-template-columns:repeat(3, 44px); gap:14px 24px; }
+  .tile{
+    width:44px; height:44px; border-radius:11px; display:block;
+    background:#fff; border:1px solid rgba(234,227,217,0.9);
+    box-shadow:0 4px 10px -7px rgba(23,20,17,0.22);
+  }
   .pill-moss{
     display:inline-flex; align-items:center; gap:8px;
     background:var(--soft-moss); border-radius:999px; padding:8px 15px;
@@ -372,34 +374,6 @@
   .feature h3{ font-family:var(--serif); font-weight:500; font-size:19px; letter-spacing:-0.3px; }
   .feature p{ font-size:14px; color:var(--soft-ink); margin-top:8px; }
 
-  /* ---------- pricing ---------- */
-  .plans{ display:grid; grid-template-columns:repeat(2, minmax(0,440px)); gap:24px; justify-content:center; }
-  @media (max-width:820px){ .plans{ grid-template-columns:minmax(0,440px); } }
-  .plan{
-    background:rgba(255,253,249,0.92);
-    border:1px solid rgba(234,227,217,0.85);
-    border-radius:28px; padding:40px;
-    display:flex; flex-direction:column;
-  }
-  .plan.featured{ border-color:var(--gold); border-width:1.5px; position:relative; }
-  .badge{
-    position:absolute; top:-14px; left:40px;
-    background:var(--soft-gold); border:1px solid var(--gold);
-    color:var(--ink); border-radius:999px; padding:5px 14px;
-    font-size:11px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase;
-  }
-  .plan .name{ font-size:13px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:var(--muted-ink); }
-  .plan .price{ font-family:var(--serif); font-size:44px; letter-spacing:-0.6px; margin-top:16px; }
-  .plan .per{ font-family:var(--sans); font-size:15px; color:var(--soft-ink); letter-spacing:0; }
-  .plan ul{ list-style:none; margin:26px 0 34px; display:grid; gap:12px; }
-  .plan li{ font-size:14px; color:var(--soft-ink); display:flex; gap:10px; align-items:flex-start; }
-  .plan li::before{
-    content:""; width:16px; height:16px; flex:none; margin-top:2px;
-    border-radius:50%; background:var(--soft-gold);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.5l2.5 2.5 4.5-5' fill='none' stroke='%23D6A43A' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  }
-  .plan .btn{ margin-top:auto; width:100%; }
-
   /* ---------- final CTA (shield card) ---------- */
   .final{
     background:#1D1915;
@@ -459,7 +433,6 @@
     <nav class="nav-links" aria-label="Main">
       <a class="link" href="#how">How it works</a>
       <a class="link" href="#time">Your time</a>
-      <a class="link" href="#pricing">Pricing</a>
       <a class="btn btn-ink" href="#" data-appstore>Download</a>
     </nav>
   </div>
@@ -532,16 +505,17 @@
             <h3>Choose the apps you want to protect.</h3>
             <p class="desc">You decide which apps should pause before you scroll.</p>
           </div>
-          <div class="step-visual" aria-hidden="true">
+          <div class="step-visual">
             <div class="tiles">
-              <span class="tile" style="background:#171411"></span>
-              <span class="tile" style="background:#C9534B"></span>
-              <span class="tile" style="background:#D98B3A"></span>
-              <span class="tile" style="background:#6F8A72"></span>
-              <span class="tile" style="background:#B0685E"></span>
-              <span class="tile" style="background:#5B554E"></span>
-              <span class="tile" style="background:#D6A43A"></span>
-              <span class="tile" style="background:#999189"></span>
+              <img class="tile" src="assets/icons/x.png" alt="X" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/netflix.png" alt="Netflix" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/youtube.png" alt="YouTube" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/ubereats.png" alt="Uber Eats" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/tiktok.png" alt="TikTok" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/facebook.png" alt="Facebook" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/tinder.png" alt="Tinder" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/instagram.png" alt="Instagram" width="44" height="44" loading="lazy">
+              <img class="tile" src="assets/icons/snapchat.png" alt="Snapchat" width="44" height="44" loading="lazy">
             </div>
             <span class="pill-moss"><span class="dot"></span>Paused until Scripture</span>
           </div>
@@ -689,43 +663,6 @@
     </div>
   </section>
 
-  <!-- ======================= PRICING ======================= -->
-  <section id="pricing">
-    <div class="wrap">
-      <div class="section-head center reveal">
-        <p class="eyebrow">Pricing</p>
-        <h2>Build a rhythm <span class="accent">that lasts.</span></h2>
-        <p>Start with a 3-day free trial. Cancel anytime in your App&nbsp;Store settings.</p>
-      </div>
-      <div class="plans">
-        <article class="plan reveal">
-          <p class="name">Weekly</p>
-          <p class="price">$4.99 <span class="per">/ week</span></p>
-          <ul>
-            <li>Every feature included</li>
-            <li>Protect the apps you choose</li>
-            <li>Cancel anytime</li>
-          </ul>
-          <a class="btn btn-quiet" href="#" data-appstore>Start weekly</a>
-        </article>
-        <article class="plan featured reveal">
-          <span class="badge">3-day free trial</span>
-          <p class="name">Yearly</p>
-          <p class="price">$39.99 <span class="per">/ year</span></p>
-          <ul>
-            <li>Every feature included</li>
-            <li>3-day free trial, then $39.99/year</li>
-            <li>Cancel anytime</li>
-          </ul>
-          <a class="btn btn-gold" href="#" data-appstore>
-            Start free trial
-            <svg class="arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </article>
-      </div>
-    </div>
-  </section>
-
   <!-- ======================= FINAL CTA ======================= -->
   <section id="download" style="padding-top:0;">
     <div class="wrap">
@@ -772,7 +709,6 @@
       </div>
       <nav class="foot-links" aria-label="Footer">
         <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
         <a href="support/">Support</a>
         <a href="privacy/">Privacy Policy</a>
         <a href="#" data-appstore>Download</a>
@@ -787,7 +723,7 @@
      APP STORE LINK — replace this one URL when you have it.
      Every "Download" button on the page uses it automatically.
      ============================================================ */
-  const APP_STORE_URL = "#"; // e.g. "https://apps.apple.com/app/id0000000000"
+  const APP_STORE_URL = "https://apps.apple.com/us/app/locking-bible-stop-scrolling/id6809897876";
 
   document.querySelectorAll("[data-appstore]").forEach(a => {
     a.href = APP_STORE_URL;

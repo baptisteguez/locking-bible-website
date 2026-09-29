@@ -2,5 +2,5 @@
 # Publishes ONLY the deploy/ folder so private repo files (CLAUDE.md,
 # app screenshots) are never served on lockingbible.com.
 [build]
-  command = "rm -rf deploy && mkdir -p deploy && cp index.html sitemap.xml robots.txt icon.png deploy/ && cp -R privacy support deploy/"
+  command = "rm -rf deploy && mkdir -p deploy && cp index.html sitemap.xml robots.txt icon.png deploy/ && cp -R privacy support assets deploy/"
   publish = "deploy"
