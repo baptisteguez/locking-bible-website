@@ -3,220 +3,193 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Privacy Policy — Locking Bible</title>
-<meta name="description" content="Privacy Policy for the Locking Bible iOS app. Locking Bible has no account, no backend and no analytics — your Screen Time choices and Scripture activity stay on your device.">
+<title>Privacy Policy — Lumi Bible</title>
+<meta name="description" content="How Lumi Bible handles your information: no account, your Bible activity stays on your iPhone, and anonymous usage analytics to improve the app.">
 <link rel="canonical" href="https://lockingbible.com/privacy/">
-<link rel="icon" type="image/png" sizes="96x96" href="https://lockingbible.com/favicon.png">
-<link rel="icon" href="https://lockingbible.com/favicon.ico" sizes="any">
+<meta name="theme-color" content="#FBF7EF">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon.png">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ivory:#FAF7F0; --warm-ivory:#FFF3D8; --surface:#FFFDF9;
-    --ink:#171411; --soft-ink:#5B554E; --muted-ink:#999189;
-    --gold:#F1C45A; --deep-gold:#D6A43A; --coral:#E5685B; --hairline:#EAE3D9;
-    --serif:"Source Serif 4","New York",Georgia,"Times New Roman",serif;
-    --sans:"Inter",-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",system-ui,sans-serif;
-  }
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  body{
-    font-family:var(--sans); color:var(--ink);
-    background-color:var(--ivory);
-    background-image:radial-gradient(120% 60% at 16% 0%, var(--warm-ivory) 0%, rgba(255,243,216,0) 55%);
-    background-repeat:no-repeat;
-    font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;
-  }
-  .wrap{ max-width:680px; margin:0 auto; padding:0 24px; }
-
-  header{ border-bottom:1px solid var(--hairline); }
-  .nav{ display:flex; align-items:center; justify-content:space-between; height:72px; }
-  .brand{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--ink); }
-  .brand svg{ width:34px; height:34px; display:block; }
-  .wordmark{ line-height:1.05; }
-  .wordmark .top{ display:block; font-size:9px; font-weight:600; letter-spacing:0.28em; color:var(--soft-ink); }
-  .wordmark .bottom{ display:block; font-family:var(--serif); font-size:18px; font-weight:500; }
-  .nav a.back{ font-size:14px; font-weight:500; color:var(--soft-ink); text-decoration:none; }
-  .nav a.back:hover{ color:var(--ink); }
-
-  main{ padding:72px 0 96px; }
-  .eyebrow{
-    font-size:11px; font-weight:600; letter-spacing:0.2em; text-transform:uppercase;
-    color:var(--muted-ink); margin-bottom:16px;
-  }
-  h1{
-    font-family:var(--serif); font-weight:500; font-size:clamp(36px,6vw,48px);
-    letter-spacing:-0.8px; line-height:1.1;
-  }
-  .updated{ font-size:14px; color:var(--muted-ink); margin-top:14px; }
-
-  .summary{
-    margin-top:40px; padding:24px 26px;
-    background:rgba(255,253,249,0.9); border:1px solid var(--hairline); border-radius:20px;
-    font-family:var(--serif); font-size:18px; line-height:1.6; letter-spacing:-0.2px;
-    color:var(--ink);
-  }
-
-  h2{
-    font-family:var(--serif); font-weight:500; font-size:24px; letter-spacing:-0.4px;
-    margin:64px 0 16px; padding-top:40px; border-top:1px solid var(--hairline);
-  }
-  h3{ font-family:var(--serif); font-weight:600; font-size:17px; margin:26px 0 8px; }
-  p{ color:var(--soft-ink); margin:0 0 14px; }
-  strong{ color:var(--ink); font-weight:600; }
-  ul{ margin:0 0 14px; padding-left:0; list-style:none; }
-  li{
-    color:var(--soft-ink); padding-left:22px; position:relative; margin-bottom:8px;
-  }
-  li::before{
-    content:""; position:absolute; left:4px; top:0.72em;
-    width:5px; height:5px; border-radius:50%; background:var(--deep-gold);
-  }
-  a{ color:var(--ink); text-decoration:underline; text-decoration-color:var(--gold); text-underline-offset:3px; }
-  a:hover{ text-decoration-color:var(--deep-gold); }
-
-  footer{ border-top:1px solid var(--hairline); padding:36px 0 48px; }
-  footer .row{ display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap; }
-  footer p, footer a{ font-size:13px; color:var(--muted-ink); }
-  footer a{ text-decoration:none; }
-  footer a:hover{ color:var(--ink); }
-  footer nav{ display:flex; gap:24px; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/site.css">
 </head>
 <body>
 
-<header>
+<header class="site-header">
   <div class="wrap nav">
-    <a class="brand" href="../" aria-label="Locking Bible — home">
-      <svg viewBox="0 0 88 88" aria-hidden="true">
-        <rect x="4" y="4" width="80" height="80" rx="22" fill="#171411"/>
-        <rect x="14" y="14" width="60" height="60" rx="15" fill="none" stroke="#F9E8B3" stroke-width="2.5"/>
-        <rect x="40.5" y="26" width="7" height="34" rx="3.5" fill="#FAF7F0"/>
-        <rect x="31" y="35" width="26" height="7" rx="3.5" fill="#FAF7F0"/>
-        <path d="M63 46a8 8 0 0 1 16 0v5H63z" fill="none" stroke="#F1C45A" stroke-width="5"/>
-        <rect x="59" y="49" width="24" height="20" rx="6" fill="#F1C45A"/>
-      </svg>
-      <span class="wordmark"><span class="top">LOCKING</span><span class="bottom">Bible</span></span>
+    <a class="brand" href="/" aria-label="Lumi Bible home">
+      <img src="/icon.png" alt="" width="38" height="38">
+      <span>Lumi Bible</span>
     </a>
-    <a class="back" href="../">Back to home</a>
+    <ul class="nav-links">
+      <li class="hide-sm"><a href="/">Home</a></li>
+      <li class="hide-sm"><a href="/support/">Support</a></li>
+      <li><a class="btn small" href="https://apps.apple.com/app/id6809897876">Download</a></li>
+    </ul>
   </div>
 </header>
 
-<main>
-  <div class="wrap">
-    <p class="eyebrow">Legal</p>
+<main class="wrap narrow">
+  <div class="doc-hero">
+    <span class="eyebrow">Legal</span>
     <h1>Privacy Policy</h1>
-    <p class="updated">Last updated: September 9, 2026</p>
+    <p class="updated">Last updated: October 30, 2026 · Applies to Lumi Bible 2.0 and later</p>
+  </div>
 
-    <div class="summary">
-      Locking Bible is designed to keep your Screen Time choices and app activity private.
-      We do not require an account, operate a user database, or upload your selected apps,
-      Scripture activity, streaks, or protection settings to a Locking Bible backend.
-      We do not operate a backend server for the Locking Bible app.
-    </div>
-
-    <h2>1. Overview</h2>
-    <p>Locking Bible (&ldquo;the app&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;) is an iOS app that pauses the distracting apps you choose, using Apple&rsquo;s Screen Time technology, and offers a short moment with Scripture before you can scroll. This Privacy Policy explains what information the app handles, where it lives, and the choices you have.</p>
-    <p>The app is intentionally simple: there is no account, no login, no backend server, and no third-party software development kits (SDKs). The app itself makes no network requests to us.</p>
-
-    <h2>2. Information We Do Not Collect</h2>
-    <p>Locking Bible does not collect, transmit, sell, or share personal data from the app. Specifically, the app has:</p>
+  <div class="summary">
+    In short: Lumi Bible has no account and no login. Your first name, your answers, your likes, favorites, streak and reading stay on your iPhone.
     <ul>
-      <li>no user accounts and no login;</li>
-      <li>no backend, database, or cloud storage operated by us;</li>
-      <li>no analytics, telemetry, crash-reporting, advertising, or attribution SDKs;</li>
-      <li>no third-party SDKs of any kind — the app uses only Apple system frameworks;</li>
-      <li>no access to your location, contacts, camera, microphone, photo library, or health data;</li>
-      <li>no advertising and no tracking.</li>
+      <li>To improve the app, we use Amplitude to measure how the app is used (for example, which onboarding step people reach). This data is not linked to your name or identity.</li>
+      <li>We do not sell your data, show ads, or track you across other companies' apps and websites.</li>
+      <li>Purchases are handled entirely by Apple.</li>
     </ul>
-    <p>Because the app has no Locking Bible backend, your in-app activity never reaches us.</p>
+  </div>
 
-    <h2>3. Information Stored Locally on Your Device</h2>
-    <p>To work, the app keeps a small amount of state on your device only, in local app storage (including a shared App Group container so the app and its Screen Time extensions can read the same state). This includes:</p>
+  <article class="prose">
+
+    <h2>1. Who we are</h2>
+    <p>Lumi Bible (“the app”, “we”, “us”) is an iOS app that offers a feed of Bible verses, the complete Bible offline, and Home Screen and Lock Screen widgets. Lumi Bible was previously called Locking Bible. This website, lockingbible.com, is the app's official website.</p>
+    <p>The app is published by Baptiste Guez, who is responsible for the processing described in this policy. You can reach us at <a href="mailto:contact@lockingbible.com">contact@lockingbible.com</a>.</p>
+
+    <h2>2. What stays on your device</h2>
+    <p>Lumi Bible works without an account. To give you a personal experience, the app keeps the following information <strong>only on your iPhone</strong>, in the app's private storage (shared with the Lumi Bible widgets through an App Group container on the same device):</p>
     <ul>
-      <li>whether you completed onboarding, and the answers you optionally give during onboarding (how often you read Scripture, your estimated daily screen time, your age range);</li>
-      <li>whether Protection is on or off, and whether Screen Time authorization was granted;</li>
-      <li>your selection of protected apps, stored as Apple-provided opaque tokens (see section 4), and the number of apps selected;</li>
-      <li>your progress: current streak, verses read, minutes reclaimed, the date of your last completed pause, and the last verse shown;</li>
-      <li>the expiration time of a current unlock window;</li>
-      <li>notification and app settings.</li>
+      <li>your first name, if you enter it during onboarding, used to greet you in the app;</li>
+      <li>the answers you give during onboarding (for example your age range, your reading habits, your goals, your estimated screen time) and the reading plan built from them;</li>
+      <li>the verses you like, your favorites, your streak, the days you opened a verse, your points and badges;</li>
+      <li>your reading position in the Bible, text size and reading colors;</li>
+      <li>your language, background, brightness, app icon, reminder and widget settings;</li>
+      <li>whether you have an active Premium subscription, so the widgets can show the right content.</li>
     </ul>
-    <p>This information stays on your device. It is not uploaded anywhere by Locking Bible, and we cannot see it.</p>
+    <p>This information is <strong>not sent to us</strong> or to anyone else, and we cannot see it. It is deleted when you delete the app. If your iPhone backups are enabled, it may be included in your own iCloud or computer backup, under Apple's control.</p>
+    <p>The complete Bible, the verses and the widgets content are built into the app and work offline.</p>
 
-    <h2>4. Screen Time and Family Controls</h2>
-    <p>Locking Bible uses Apple&rsquo;s Family Controls, Managed Settings, and Device Activity frameworks (Apple&rsquo;s Screen Time technology) to shield the apps you choose.</p>
+    <h2>3. Usage analytics (Amplitude)</h2>
+    <p>To understand how the app is used and make it better, Lumi Bible uses <strong>Amplitude</strong>, an analytics service provided by Amplitude, Inc. (United States). Analytics run in the app only; the widgets send nothing.</p>
+    <h3>What is collected</h3>
+    <table>
+      <thead><tr><th>Data</th><th>Examples</th></tr></thead>
+      <tbody>
+        <tr><td>Product interaction</td><td>App opens and sessions, screens viewed, onboarding steps completed (step number and name), whether the onboarding ended with a subscription, when the subscription screen is closed without subscribing, and when a subscription or free trial starts (plan, price, currency, trial or not, where it started).</td></tr>
+        <tr><td>Device identifier</td><td>A random identifier generated for analytics and Apple's identifier for vendor (IDFV), used to count unique devices. We do <strong>not</strong> use the advertising identifier (IDFA).</td></tr>
+        <tr><td>Technical information</td><td>Device model, iOS version, app version, mobile carrier, language and region settings.</td></tr>
+        <tr><td>Approximate location</td><td>Amplitude may derive an approximate location (country, region or city) from your IP address. Lumi Bible never accesses your precise location.</td></tr>
+      </tbody>
+    </table>
+    <h3>What is never collected</h3>
+    <p>Your first name, your onboarding answers, the verses you read, like or save, your favorites, and anything you share are <strong>never sent</strong> to Amplitude or to us.</p>
+    <h3>How it is used</h3>
+    <p>Analytics data is used only to measure and improve the app (for example, to see where people stop during onboarding). It is not linked to your identity, not used for advertising, not sold, and not combined with data from other companies for tracking.</p>
+    <p>Amplitude processes this data on our behalf as a service provider, under its own security commitments. See <a href="https://amplitude.com/privacy" rel="noopener">Amplitude's privacy notice</a>.</p>
+
+    <h2>4. Subscriptions and payments</h2>
+    <p>Lumi Bible Premium is an auto-renewable subscription sold through Apple's App Store (StoreKit).</p>
     <ul>
-      <li>You explicitly choose which apps to protect, using Apple&rsquo;s own app picker.</li>
-      <li>Apple represents your selections using privacy-preserving <strong>opaque tokens</strong> provided by the Family Controls framework. Locking Bible does not upload those tokens to any Locking Bible backend.</li>
-      <li>Locking Bible never receives or uploads the contents or activity of the apps you protect.</li>
-      <li>Your selection and protection state are used locally on the device, and shared locally between the main app and its Screen Time extensions through the App Group container. They are not transmitted to any Locking Bible backend.</li>
+      <li>Payments and billing are handled entirely by Apple. We never see or store your card or banking details, your Apple Account email or your name.</li>
+      <li>The app checks with Apple, on your device, whether your subscription is active.</li>
+      <li>When a subscription or free trial starts, the analytics event described in section 3 records the plan and price, without any payment details.</li>
     </ul>
-    <p>You are always in control: you can turn Protection off in the app&rsquo;s Settings, and you can revoke the app&rsquo;s Screen Time authorization at any time in iOS Settings &rarr; Screen Time.</p>
+    <p>Apple processes your purchase information under <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple's Privacy Policy</a>. You can manage or cancel your subscription in your App Store account settings.</p>
 
-    <h2>5. Subscriptions and Payments</h2>
-    <p>Locking Bible offers auto-renewing subscriptions (weekly and annual) through Apple&rsquo;s App Store, using Apple&rsquo;s StoreKit framework.</p>
+    <h2>5. Permissions</h2>
+    <p>Lumi Bible only asks for permissions when a feature needs them. You can change them anytime in iOS Settings.</p>
     <ul>
-      <li>All purchases and billing are handled by Apple. Locking Bible never sees or processes your credit card or banking details.</li>
-      <li>On your device, the app checks your current App Store entitlement status to know whether premium access is active. This check happens locally through Apple&rsquo;s frameworks.</li>
-      <li>Apple processes your purchase information independently, as described in <a href="https://www.apple.com/legal/privacy/" rel="noopener">Apple&rsquo;s Privacy Policy</a>. We do not control Apple&rsquo;s processing.</li>
+      <li><strong>Notifications</strong> (optional): verse reminders at the times you choose, and a reminder one day before a free trial ends. They are scheduled and delivered on your iPhone by iOS; there is no push server.</li>
+      <li><strong>Add to Photos</strong> (optional): only to save the image of a verse you choose to share. The app cannot read your photo library.</li>
     </ul>
-    <p>You can manage or cancel your subscription at any time in your App Store account settings, or from Manage Subscription inside the app.</p>
+    <p>Lumi Bible does not access your contacts, camera, microphone, health data or precise location.</p>
+    <p>The app may also show Apple's standard rating prompt. Ratings are handled by Apple and we do not receive your identity.</p>
 
-    <h2>6. Notifications</h2>
-    <p>Notifications are optional. If you allow them, the app schedules <strong>local notifications on your device</strong> — for example, &ldquo;Protection is back on&rdquo; when an unlock window ends. There is no push-notification server: notifications are created and delivered entirely on-device by iOS. You can disable them at any time in iOS Settings &rarr; Notifications.</p>
+    <h2>6. Screen Time (previous versions)</h2>
+    <p>Earlier versions of the app, published as Locking Bible, used Apple's Screen Time technology to pause selected apps. <strong>This feature has been removed in Lumi Bible 2.0.</strong> The app no longer requests or uses Screen Time access (Family Controls, Managed Settings, Device Activity), and never uploaded your app selections.</p>
 
-    <h2>7. Support Communications</h2>
-    <p>If you contact us at <a href="mailto:support@lockingbible.com">support@lockingbible.com</a>, we receive the information you voluntarily provide — your email address, your name if you include it, and the contents of your message.</p>
-    <p>We use it only to answer your request, provide support, and keep necessary support records. This is information you send us directly; it is not data collected by the app.</p>
-
-    <h2>8. Data Sharing</h2>
-    <p>We do not sell personal information, and we do not share personal information with third parties for advertising.</p>
-    <p>The Locking Bible iOS app does not integrate third-party analytics, advertising, attribution, or tracking SDKs. It relies on <strong>Apple</strong> system services and frameworks for purchases (App Store / StoreKit), Screen Time features (Family Controls), and local notifications. Apple processes information under its own <a href="https://www.apple.com/legal/privacy/" rel="noopener">privacy policy</a>, independently of us.</p>
-    <p>The provider that hosts this website may automatically process basic technical request data (such as IP address and browser user agent) in short-lived server logs, as virtually all web hosting does, to deliver pages securely. This website itself sets no analytics or advertising cookies.</p>
-
-    <h2>9. Data Retention and Deletion</h2>
+    <h2>7. Sharing</h2>
+    <p>We do not sell or rent personal information, and we do not share it for advertising. Information is only handled by:</p>
     <ul>
-      <li>We do not maintain any server-side user profile and do not retain app usage data on a Locking Bible backend.</li>
-      <li>Most Locking Bible app data is stored locally and is removed when the app is deleted, subject to iOS system behavior. Screen Time permissions and system-managed settings can also be managed through iOS Settings.</li>
-      <li>You can turn Protection off in the app, and revoke Screen Time authorization in iOS Settings at any time.</li>
-      <li>Support emails are kept only as long as reasonably necessary to respond, maintain records, resolve disputes, or comply with legal obligations. You may email us to request deletion of your support-related personal data, where applicable.</li>
+      <li><strong>Amplitude</strong>, for the analytics described in section 3;</li>
+      <li><strong>Apple</strong>, for purchases, notifications, widgets and system features, under Apple's own policies;</li>
+      <li>authorities, if required by law.</li>
+    </ul>
+    <p>Lumi Bible does not contain advertising and does not track you across apps or websites owned by other companies, as defined by Apple's App Tracking Transparency.</p>
+
+    <h2>8. Contacting us</h2>
+    <p>If you email <a href="mailto:contact@lockingbible.com">contact@lockingbible.com</a>, we receive your email address and what you choose to write. We use it only to answer you and keep a record of the conversation as long as reasonably necessary.</p>
+
+    <h2>9. Retention and deletion</h2>
+    <ul>
+      <li><strong>On-device data</strong> is deleted when you delete the app.</li>
+      <li><strong>Analytics data</strong> is kept only as long as it is useful to improve the app, and then deleted or aggregated. Because it is not linked to your identity, we may need your help to find it: contact us and we will do our best to delete the data associated with your device.</li>
+      <li><strong>Support emails</strong> are deleted when no longer needed, or on request.</li>
     </ul>
 
-    <h2>10. Children&rsquo;s Privacy</h2>
-    <p>Locking Bible is not directed at children, and we do not knowingly collect personal information from children through the app. The app has no account, no social features, no advertising, and no data collection targeted at anyone, including children. If you believe a child has sent us personal information by email, contact us and we will delete it.</p>
-
-    <h2>11. Your Privacy Rights</h2>
-    <p>Because the app collects no personal data on our side, the personal data we may hold about you is limited to support communications you send us.</p>
-    <h3>European Economic Area, United Kingdom and Switzerland</h3>
-    <p>The data controller for support communications is Baptiste Guez (contact: <a href="mailto:support@lockingbible.com">support@lockingbible.com</a>). We process support communications to respond to your request and operate the service — on the basis of our legitimate interest in answering the people who write to us, or, where relevant, because it is necessary to perform our contract with you. Retention is described in section 9.</p>
-    <p>Where applicable law grants them, you have the right to access, correct, delete, restrict, or object to the processing of your personal data, the right to data portability, and the right to lodge a complaint with your local supervisory authority.</p>
+    <h2>10. Your rights</h2>
+    <p>Depending on where you live (for example in the European Economic Area, the United Kingdom, Switzerland, Brazil or California), you may have the right to access, correct, delete or receive a copy of your personal data, to object to or restrict its processing, and to lodge a complaint with your data protection authority. To exercise these rights, email <a href="mailto:contact@lockingbible.com">contact@lockingbible.com</a>.</p>
+    <h3>Legal bases (EEA, UK and Switzerland)</h3>
+    <ul>
+      <li>Usage analytics: our legitimate interest in understanding and improving the app, limited to data that is not linked to your identity. You can object at any time by contacting us.</li>
+      <li>Subscriptions: performance of the contract you enter into when you subscribe.</li>
+      <li>Support emails: our legitimate interest in answering you.</li>
+    </ul>
+    <h3>International transfers</h3>
+    <p>Amplitude may process analytics data in the United States. Where required, these transfers rely on appropriate safeguards such as the EU-U.S. Data Privacy Framework or the European Commission's Standard Contractual Clauses.</p>
     <h3>California</h3>
-    <p>Locking Bible does not sell personal information and does not share personal information for cross-context behavioral advertising. There is no targeted advertising in the app.</p>
+    <p>We do not sell personal information and do not share it for cross-context behavioral advertising.</p>
+
+    <h2>11. Children</h2>
+    <p>Lumi Bible is not directed at children under 13 and has no social features or advertising. We do not knowingly collect personal information from children. If you believe a child has sent us personal information, contact us and we will delete it.</p>
 
     <h2>12. Security</h2>
-    <p>Your app data stays on your device, protected by iOS&rsquo;s built-in security (such as device encryption and app sandboxing). Because the app does not transmit your activity to a Locking Bible backend, there is no Locking Bible user database that could expose it. Payments are secured and processed by Apple.</p>
+    <p>Your personal content stays on your iPhone, protected by iOS security (device encryption and app sandboxing). Analytics data is sent over encrypted connections. No method is perfectly secure, but we limit what leaves your device to what is described above.</p>
 
-    <h2>13. International Users</h2>
-    <p>The app works entirely on your device, wherever you are; we perform no cross-border transfer of your app data because we never receive it. If you email support, your message may be processed in the country where the developer is located.</p>
+    <h2>13. This website</h2>
+    <p>lockingbible.com does not use cookies, analytics or advertising. Our hosting provider may process basic technical data (such as IP address and browser type) in short-lived server logs to deliver pages securely. Fonts are loaded from Google Fonts.</p>
 
-    <h2>14. Changes to This Privacy Policy</h2>
-    <p>If we change this policy — for example, if a future version of the app adds a feature that handles data differently — we will update this page and its &ldquo;Last updated&rdquo; date. Material changes will be reflected here before they take effect.</p>
+    <h2>14. Changes</h2>
+    <p>If we change this policy, we will update this page and its “Last updated” date. If a change significantly affects how your information is handled, we will make it clear here before it takes effect.</p>
 
-    <h2>15. Contact Us</h2>
-    <p>Questions about privacy, or a request about your data:</p>
-    <p><strong><a href="mailto:support@lockingbible.com">support@lockingbible.com</a></strong></p>
-  </div>
+    <h2>15. Contact</h2>
+    <p>Questions about privacy or a request about your data: <a href="mailto:contact@lockingbible.com">contact@lockingbible.com</a></p>
+  </article>
 </main>
 
-<footer>
-  <div class="wrap row">
-    <p>© 2026 Locking Bible · Less scrolling. More Scripture.</p>
-    <nav>
-      <a href="../">Home</a>
-      <a href="../support/">Support</a>
-    </nav>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/"><img src="/icon.png" alt="" width="38" height="38"><span>Lumi Bible</span></a>
+        <p>Daily Bible verses, the complete Bible and widgets.<br>For iPhone.</p>
+      </div>
+      <nav aria-label="Footer">
+        <div>
+          <h4>App</h4>
+          <ul>
+            <li><a href="https://apps.apple.com/app/id6809897876">App Store</a></li>
+            <li><a href="/#feed">Features</a></li>
+            <li><a href="/#premium">Premium</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Help</h4>
+          <ul>
+            <li><a href="/support/">Support</a></li>
+            <li><a href="mailto:contact@lockingbible.com">contact@lockingbible.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="/privacy/" aria-current="page">Privacy Policy</a></li>
+            <li><a href="/terms/">Terms of Use</a></li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <p class="footer-note">© 2026 Lumi Bible (formerly Locking Bible). Apple, iPhone and App Store are trademarks of Apple Inc.</p>
   </div>
 </footer>
 
+<script src="/assets/site.js" defer></script>
 </body>
 </html>
