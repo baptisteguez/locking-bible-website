@@ -1,0 +1,64 @@
+/* No Social Brainrot — styles propres à /nosocialbrainrot (indépendants de site.css). */
+:root{
+  --bg:#F6F5F2; --ink:#0A0A0A; --ink-soft:#5C5B57; --line:#E2E0DA; --card:#FFFFFF; --accent:#FF5A36;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-text-size-adjust:100%; }
+body{ background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:17px; line-height:1.65; -webkit-font-smoothing:antialiased; }
+a{ color:inherit; }
+.wrap{ max-width:720px; margin:0 auto; padding:0 20px; }
+
+/* Header */
+.nsb-header{ border-bottom:1px solid var(--line); background:var(--bg); }
+.nsb-header .wrap{ display:flex; align-items:center; justify-content:space-between; gap:16px; min-height:64px; flex-wrap:wrap; padding-top:12px; padding-bottom:12px; }
+.nsb-brand{ font-weight:800; font-size:17px; letter-spacing:-0.01em; text-decoration:none; }
+.nsb-brand span{ color:var(--accent); }
+.nsb-nav{ display:flex; align-items:center; gap:6px; font-size:15px; color:var(--ink-soft); }
+.nsb-nav a{ text-decoration:none; padding:4px 2px; }
+.nsb-nav a:hover,.nsb-nav a[aria-current="page"]{ color:var(--ink); }
+.nsb-nav a[aria-current="page"]{ box-shadow:inset 0 -2px 0 var(--accent); }
+
+/* Contenu */
+main{ padding:56px 0 72px; }
+h1{ font-size:clamp(32px,6vw,46px); line-height:1.12; letter-spacing:-0.025em; font-weight:800; }
+h2{ font-size:21px; line-height:1.3; letter-spacing:-0.01em; font-weight:700; margin:40px 0 12px; }
+p,ul{ margin-top:14px; }
+ul{ padding-left:22px; }
+li{ margin-top:6px; }
+li::marker{ color:var(--accent); }
+.meta{ color:var(--ink-soft); font-size:15px; margin-top:12px; }
+.lead{ font-size:clamp(19px,2.6vw,22px); color:var(--ink-soft); margin-top:18px; line-height:1.5; }
+a.inline{ color:var(--accent); text-underline-offset:3px; }
+strong{ font-weight:700; }
+
+/* Présentation */
+.hero h1 em{ font-style:normal; color:var(--accent); }
+.points{ list-style:none; padding:0; margin-top:36px; display:grid; gap:12px; }
+.points li{ margin:0; background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 20px 18px 54px; position:relative; font-weight:600; }
+.points li::before{ content:""; position:absolute; left:20px; top:22px; width:18px; height:18px; border-radius:50%; background:var(--accent); box-shadow:inset 0 0 0 5px var(--accent), inset 0 0 0 7px #fff; }
+.links{ display:flex; flex-wrap:wrap; gap:10px; margin-top:36px; }
+.btn{ display:inline-block; text-decoration:none; font-weight:600; font-size:15px; padding:11px 18px; border-radius:999px; border:1px solid var(--line); background:var(--card); }
+.btn:hover{ border-color:var(--ink); }
+.btn.primary{ background:var(--accent); border-color:var(--accent); color:#fff; }
+.btn.primary:hover{ filter:brightness(0.95); }
+
+/* FAQ */
+.faq{ margin-top:32px; display:grid; gap:10px; }
+.faq details{ background:var(--card); border:1px solid var(--line); border-radius:14px; }
+.faq summary{ cursor:pointer; list-style:none; padding:16px 48px 16px 20px; font-weight:700; position:relative; }
+.faq summary::-webkit-details-marker{ display:none; }
+.faq summary::after{ content:"+"; position:absolute; right:20px; top:50%; transform:translateY(-50%); color:var(--accent); font-size:22px; font-weight:500; }
+.faq details[open] summary::after{ content:"–"; }
+.faq details p{ margin:0; padding:0 20px 18px; color:var(--ink-soft); }
+
+/* Pied de page */
+.nsb-footer{ border-top:1px solid var(--line); padding:28px 0 40px; font-size:14px; color:var(--ink-soft); }
+.nsb-footer p{ margin-top:8px; }
+.nsb-footer a{ text-underline-offset:3px; }
+
+@media (max-width:520px){
+  body{ font-size:16px; }
+  main{ padding:40px 0 56px; }
+  .nsb-header .wrap{ justify-content:center; text-align:center; }
+}

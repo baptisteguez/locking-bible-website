@@ -2,7 +2,7 @@
 # Publishes ONLY the deploy/ folder so private repo files (CLAUDE.md, source
 # images) are never served on lockingbible.com.
 [build]
-  command = "rm -rf deploy && mkdir -p deploy && cp index.html 404.html sitemap.xml robots.txt icon.png favicon.png favicon.ico apple-touch-icon.png og-image.png deploy/ && cp -R privacy support terms assets deploy/"
+  command = "rm -rf deploy && mkdir -p deploy && cp index.html 404.html sitemap.xml robots.txt icon.png favicon.png favicon.ico apple-touch-icon.png og-image.png deploy/ && cp -R privacy support terms assets nosocialbrainrot deploy/"
   publish = "deploy"
 
 # Old Locking Bible URLs and typos land on the right page.
@@ -15,6 +15,31 @@
   from = "/terms-of-use"
   to = "/terms/"
   status = 301
+
+# No Social Brainrot (2e app) : les URLs sans slash final répondent en 200 (Apple les vérifie).
+[[redirects]]
+  from = "/nosocialbrainrot"
+  to = "/nosocialbrainrot/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nosocialbrainrot/privacy"
+  to = "/nosocialbrainrot/privacy/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nosocialbrainrot/terms"
+  to = "/nosocialbrainrot/terms/index.html"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/nosocialbrainrot/support"
+  to = "/nosocialbrainrot/support/index.html"
+  status = 200
+  force = true
 
 [[headers]]
   for = "/assets/*"
